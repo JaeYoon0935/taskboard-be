@@ -55,15 +55,15 @@ public class Comment {
 	@PrePersist
 	public void prePersist() {
 		
-		if(this.regUser == null) {
+		if(this.regUser == null){
 			this.regUser = "user";
 		}
 		
-		if (this.regDts == null) {
+		if(this.regDts == null){
             this.regDts = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
 		
-		if (this.delYn == null) {
+		if(this.delYn == null){
 			this.delYn = "N";
 		}
 		

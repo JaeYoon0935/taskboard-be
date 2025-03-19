@@ -1,12 +1,10 @@
 package com.taskboard.service;
 
-import java.util.List;
+import com.taskboard.dto.UserDto;
 import com.taskboard.entity.User;
-
 public interface UserService {
 	
-	public void join();
+	public UserDto signUp(User param);
 	
-	public List<User> selectAll();
-	
+	public UserDto login(User param);
 }

@@ -34,16 +34,13 @@ public class CommentServiceImpl implements CommentService{
 		
 		Long postsId = param.getPostsId();
 		List<Comment> comments = commentRepository.findByPosts_PostsIdAndDelYn(postsId, "N");
-		return comments.stream()
-		        .map(CommentDto::fromEntity)
-		        .collect(Collectors.toList());
+		return comments.stream().map(CommentDto::fromEntity).collect(Collectors.toList());
 	}
 	
 	@Override
 	@Transactional
 	public CommentDto regComment(CommentDto param) {
-		Posts posts = postsRepository.findById(param.getPostsId()) // boardId로 Board 조회
-			    .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+		Posts posts = postsRepository.findById(param.getPostsId()).orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
 		
 		Comment comment = new Comment();
 		comment.setPosts(posts);
@@ -57,18 +54,13 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional
 	public CommentDto delComment(CommentDto param) {
 		Long commentId = param.getCommentId();
+	    Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("댓글을 찾을 수 없습니다: " + commentId));
 
-	    // 1️⃣ 댓글(Comment) 조회
-	    Comment comment = commentRepository.findById(commentId)
-	        .orElseThrow(() -> new EntityNotFoundException("댓글을 찾을 수 없습니다: " + commentId));
-
-	    // 2️⃣ 댓글 삭제 처리 (논리 삭제)
-	    comment.setDelYn("Y"); // ✅ 논리 삭제 처리
+	    comment.setDelYn("Y"); //논리 삭제 처리
 	    comment.setModDts(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 	    commentRepository.save(comment);
 	    
 	    return CommentDto.fromEntity(comment);
-	    
 	}
 	
 	

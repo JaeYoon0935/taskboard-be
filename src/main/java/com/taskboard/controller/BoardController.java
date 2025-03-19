@@ -16,8 +16,8 @@ import com.taskboard.entity.Posts;
 import com.taskboard.service.BoardService;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/Board")
 @RestController
+@RequestMapping("/api/Board")
 public class BoardController {
 	
 	@Autowired

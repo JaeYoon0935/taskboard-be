@@ -17,19 +17,6 @@ public class BoardDto {
     private String boardTitle;
     private String delYn;
     
-    /*
-    public BoardDto(Long boardId, String title, String content, String regUser, String regDts, String modUser, String modDts, String delYn) {
-        this.boardId = boardId;
-        this.title = title;
-        this.content = content;
-        this.regUser = regUser;
-        this.regDts = regDts;
-        this.modUser = modUser;
-        this.modDts = modDts;
-        this.delYn = delYn;
-    }
-    */
-    
     public static BoardDto fromEntity(Board board) {
         return new BoardDto(
             board.getBoardId(),

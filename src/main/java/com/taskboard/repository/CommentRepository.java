@@ -8,5 +8,5 @@ import com.taskboard.entity.Comment;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment,Long>{
-	 List<Comment> findByPosts_PostsIdAndDelYn(Long PostsId, String delYn);
+	 public List<Comment> findByPosts_PostsIdAndDelYn(Long PostsId, String delYn);
 }

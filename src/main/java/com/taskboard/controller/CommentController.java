@@ -16,8 +16,8 @@ import com.taskboard.service.BoardService;
 import com.taskboard.service.CommentService;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/Comment")
 @RestController
+@RequestMapping("/Comment")
 public class CommentController {
 	
 	@Autowired
